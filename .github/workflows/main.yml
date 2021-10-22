@@ -24,6 +24,10 @@ jobs:
       - name: run npm install
         run: |
           npm install
+      
+      - name: install emoji
+        run: |
+          npm i --save-dev @types/emoji-mart
           
       - name: run tests
         run: |
