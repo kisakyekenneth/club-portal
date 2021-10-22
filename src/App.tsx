@@ -6,6 +6,7 @@ import { loginSuccess } from './features/User/userSlice';
 import Dashboard from './components/layout/Dashboard';
 import NavTabs from './components/tabView/NavTabs';
 import SignIn from './components/login/SignIn';
+import ChatMessaging from './components/chatMessaging/chat';
 function App() {
   const dispatch = useAppDispatch();
   // const email = useAppSelector( (state) => {state.userReducer.email })
@@ -16,6 +17,7 @@ function App() {
   // return <Login />;
   return <SideMenu />;
   // return <SignIn />;
+  // return ChatMessaging;
 }
 
 export default App;

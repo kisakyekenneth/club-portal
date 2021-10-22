@@ -12,10 +12,54 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import AppsIcon from '@mui/icons-material/Apps';
+import TodayIcon from '@mui/icons-material/Today';
+import PeopleIcon from '@mui/icons-material/People';
+import ChatIcon from '@mui/icons-material/Chat';
+import { localRoutes } from '../../constants/constants';
 
 const drawerWidth = 240;
+interface IAppRoute {
+  requiredRoles?: string[];
+  name: string;
+  route?: string;
+  icon?: any;
+  items?: IAppRoute[];
+}
 
 const SideMenu = () => {
+  const routes: IAppRoute[] = [
+    {
+      name: 'Dashboard',
+      route: localRoutes.dashboard,
+      icon: MailIcon,
+    },
+    {
+      name: 'Inbox',
+      route: localRoutes.inbox,
+      icon: MailIcon,
+    },
+    {
+      name: 'Starred',
+      route: localRoutes.starred,
+      icon: MailIcon,
+    },
+    {
+      name: 'Chat',
+      route: localRoutes.chat,
+      icon: MailIcon,
+    },
+    {
+      name: 'Send Email',
+      route: localRoutes.sendEmail,
+      icon: MailIcon,
+    },
+    {
+      name: 'Chat',
+      route: localRoutes.sendEmail,
+      icon: MailIcon,
+    },
+  ];
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -43,12 +87,10 @@ const SideMenu = () => {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+            {routes.map((it) => (
+              <ListItem button key={it.name}>
+                <ListItemIcon>{it.icon}</ListItemIcon>
+                <ListItemText primary={it.name} />
               </ListItem>
             ))}
           </List>
