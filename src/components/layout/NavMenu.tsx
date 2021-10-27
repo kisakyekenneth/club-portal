@@ -18,6 +18,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SendEmail from '@mui/icons-material/Email';
 import ChatIcon from '@mui/icons-material/Chat';
 import { localRoutes } from '../../constants/constants';
+import { useHistory } from 'react-router-dom';
 
 const drawerWidth = 240;
 interface IAppRoute {
@@ -28,34 +29,40 @@ interface IAppRoute {
   items?: IAppRoute[];
 }
 
+const routes: IAppRoute[] = [
+  {
+    name: 'Dashboard',
+    route: localRoutes.dashboard,
+    icon: <AppsIcon />,
+  },
+  {
+    name: 'People',
+    route: localRoutes.people,
+    icon: <PeopleIcon />,
+  },
+  {
+    name: 'Orders',
+    route: localRoutes.orders,
+    icon: <OrdersIcon />,
+  },
+  {
+    name: 'Chat',
+    route: localRoutes.chat,
+    icon: <ChatIcon />,
+  },
+  {
+    name: 'Email',
+    route: localRoutes.email,
+    icon: <SendEmail />,
+  },
+];
+
 const SideMenu = () => {
-  const routes: IAppRoute[] = [
-    {
-      name: 'Dashboard',
-      route: localRoutes.dashboard,
-      icon: <AppsIcon />,
-    },
-    {
-      name: 'People',
-      route: localRoutes.people,
-      icon: <PeopleIcon />,
-    },
-    {
-      name: 'Orders',
-      route: localRoutes.orders,
-      icon: <OrdersIcon />,
-    },
-    {
-      name: 'Chat',
-      route: localRoutes.chat,
-      icon: <ChatIcon />,
-    },
-    {
-      name: 'Email',
-      route: localRoutes.email,
-      icon: <SendEmail />,
-    },
-  ];
+  //UseHistory hook
+  const history = useHistory();
+  const HandleOnClick = (path: string) => () => {
+    history.push(path);
+  };
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -85,9 +92,9 @@ const SideMenu = () => {
         <Box sx={{ overflow: 'auto' }}>
           <List>
             {routes.map((it, index) => {
-              const { name, icon } = it;
+              const { name, icon, route } = it;
               return (
-                <ListItem button key={name}>
+                <ListItem button onClick={HandleOnClick('/chat')} key={name}>
                   {icon && <ListItemIcon>{icon}</ListItemIcon>}
 
                   <ListItemText primary={name} />

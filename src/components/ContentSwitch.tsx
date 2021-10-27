@@ -7,7 +7,9 @@
 import Grid from '@mui/material/Grid';
 import React, { Suspense } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
+import { localRoutes } from '../constants/constants';
 import Loading from './Loading/loading';
+import Login from './login/login';
 
 //  const Dashboard = React.lazy(() => import('./dashboard/Dashboard'));
 
@@ -16,7 +18,7 @@ const ContentSwitch = () => {
   return (
     <Suspense fallback={<Loading />}>
       <Switch>
-        {/* <Route path={localRoutes.chat} component={MailChat} />  */}
+        <Route path={localRoutes.chat} component={Login} />
 
         {/* {hasAnyRole(user, [
            appPermissions.roleUserEdit,
