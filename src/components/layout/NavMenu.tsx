@@ -13,8 +13,8 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AppsIcon from '@mui/icons-material/Apps';
-import TodayIcon from '@mui/icons-material/Today';
 import PeopleIcon from '@mui/icons-material/People';
+import SendEmail from '@mui/icons-material/Email';
 import ChatIcon from '@mui/icons-material/Chat';
 import { localRoutes } from '../../constants/constants';
 
@@ -28,38 +28,42 @@ interface IAppRoute {
 }
 
 const SideMenu = () => {
-  const routes: IAppRoute[] = [
+  const routes = [
     {
       name: 'Dashboard',
       route: localRoutes.dashboard,
-      icon: MailIcon,
+      icon: <AppsIcon />,
     },
     {
-      name: 'Inbox',
+      name: 'People',
       route: localRoutes.inbox,
-      icon: MailIcon,
+      icon: <PeopleIcon />,
     },
     {
       name: 'Starred',
       route: localRoutes.starred,
-      icon: MailIcon,
+      icon: <MailIcon />,
     },
     {
       name: 'Chat',
       route: localRoutes.chat,
-      icon: MailIcon,
+      icon: <ChatIcon />,
     },
     {
-      name: 'Send Email',
+      name: 'Email',
       route: localRoutes.sendEmail,
-      icon: MailIcon,
-    },
-    {
-      name: 'Chat',
-      route: localRoutes.sendEmail,
-      icon: MailIcon,
+      icon: <SendEmail />,
     },
   ];
+
+  console.log(
+    'ALL',
+    routes.map((it) => {
+      {
+        it.name;
+      }
+    })
+  );
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -87,12 +91,16 @@ const SideMenu = () => {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {routes.map((it) => (
-              <ListItem button key={it.name}>
-                <ListItemIcon>{it.icon}</ListItemIcon>
-                <ListItemText primary={it.name} />
-              </ListItem>
-            ))}
+            {routes.map((it, index) => {
+              const { name, icon } = it;
+              return (
+                <ListItem button key={name}>
+                  {icon && <ListItemIcon>{icon}</ListItemIcon>}
+
+                  <ListItemText primary={name} />
+                </ListItem>
+              );
+            })}
           </List>
           <Divider />
           <List>
