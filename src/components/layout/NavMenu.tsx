@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import OrdersIcon from '@mui/icons-material/Money';
 import MailIcon from '@mui/icons-material/Mail';
 import AppsIcon from '@mui/icons-material/Apps';
 import PeopleIcon from '@mui/icons-material/People';
@@ -29,7 +29,7 @@ interface IAppRoute {
 }
 
 const SideMenu = () => {
-  const routes = [
+  const routes: IAppRoute[] = [
     {
       name: 'Dashboard',
       route: localRoutes.dashboard,
@@ -37,13 +37,13 @@ const SideMenu = () => {
     },
     {
       name: 'People',
-      route: localRoutes.inbox,
+      route: localRoutes.people,
       icon: <PeopleIcon />,
     },
     {
-      name: 'Starred',
-      route: localRoutes.starred,
-      icon: <MailIcon />,
+      name: 'Orders',
+      route: localRoutes.orders,
+      icon: <OrdersIcon />,
     },
     {
       name: 'Chat',
@@ -52,19 +52,11 @@ const SideMenu = () => {
     },
     {
       name: 'Email',
-      route: localRoutes.sendEmail,
+      route: localRoutes.email,
       icon: <SendEmail />,
     },
   ];
 
-  console.log(
-    'ALL',
-    routes.map((it) => {
-      {
-        it.name;
-      }
-    })
-  );
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

@@ -1,7 +1,7 @@
 export const localRoutes = {
   dashboard: '/dashboard',
-  inbox: '/people/inbox',
-  starred: '/people/starred',
+  people: '/people/details',
+  orders: '/people/orders',
   sendEmail: '/people/sendEmail',
   draft: '/people/draft',
   chat: '/chat/email',
