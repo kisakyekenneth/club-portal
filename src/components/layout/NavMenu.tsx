@@ -14,6 +14,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AppsIcon from '@mui/icons-material/Apps';
 import PeopleIcon from '@mui/icons-material/People';
+import SettingsIcon from '@mui/icons-material/Settings';
 import SendEmail from '@mui/icons-material/Email';
 import ChatIcon from '@mui/icons-material/Chat';
 import { localRoutes } from '../../constants/constants';
@@ -104,11 +105,9 @@ const SideMenu = () => {
           </List>
           <Divider />
           <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            {['Settings'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
+                <ListItemIcon>{<SettingsIcon />}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
