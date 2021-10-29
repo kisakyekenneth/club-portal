@@ -18,7 +18,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SendEmail from '@mui/icons-material/Email';
 import ChatIcon from '@mui/icons-material/Chat';
 import { localRoutes } from '../../constants/constants';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 interface IAppRoute {
@@ -60,8 +60,13 @@ const routes: IAppRoute[] = [
 const SideMenu = () => {
   //UseHistory hook
   const history = useHistory();
-  const HandleOnClick = (path: string) => () => {
-    history.push(path);
+  const location = useLocation();
+  const HandleOnClick = (path: string) => history.push(path);
+
+  const pathMatches = (path: string, str: string) => path.indexOf(str) > -1;
+  const isSelected = (pathStr: string): boolean => {
+    const { pathname } = location;
+    return pathMatches(pathname, pathStr);
   };
 
   return (
@@ -94,9 +99,8 @@ const SideMenu = () => {
             {routes.map((it, index) => {
               const { name, icon, route } = it;
               return (
-                <ListItem button onClick={HandleOnClick('/chat')} key={name}>
+                <ListItem button key={name}>
                   {icon && <ListItemIcon>{icon}</ListItemIcon>}
-
                   <ListItemText primary={name} />
                 </ListItem>
               );
